@@ -16,7 +16,7 @@ init = { content = "" }
 
 render : Theme RGB255 -> State -> Html ( State, Maybe String )
 render theme { content } =
-  H.section
+  H.aside
     [ A.class "import-export"
     ]
     [ H.textarea

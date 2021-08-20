@@ -99,7 +99,7 @@ renderTools { r, g, b, h, s, l } =
     , renderControl "b" "blue:" gradB b |> H.map (\n -> stateFromRGB r g n)
     , renderControl "h" "hue:" gradH h |> H.map (\n -> stateFromHSL n s l)
     , renderControl "s" "saturation:" gradS s |> H.map (\n -> stateFromHSL h n l)
-    , renderControl "l" "lighness:" gradL l |> H.map (\n -> stateFromHSL h s n)
+    , renderControl "l" "lightness:" gradL l |> H.map (\n -> stateFromHSL h s n)
     ]
 
 renderControl : String -> String -> String -> Float -> Html Float
