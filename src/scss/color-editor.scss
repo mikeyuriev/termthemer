@@ -1,0 +1,103 @@
+@use 'cfg';
+@use 'reset';
+@use 'theme';
+@use 'mq';
+@use 'ui';
+
+.color-editor {
+  @include reset.box();
+  display: flex;
+  flex-direction: column;
+  gap: cfg.sz(0);
+}
+
+.color-editor__summary {
+  @include reset.box();
+}
+
+.color-editor__tools {
+  @include reset.box();
+}
+
+.color-summary {
+  @include reset.box();
+  display: grid;
+  grid-template-areas: "box info" "box val";
+  grid-template-columns: auto 1fr;
+  gap: cfg.sz(1);
+}
+
+.color-summary__box {
+  @include reset.box();
+  grid-area: box;
+  width: cfg.sz(3);
+
+  &::after {
+    @include reset.box();
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.color-summary__info {
+  @include reset.box();
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+}
+
+.color-summary__value {
+  @include ui.input();
+  grid-area: val;
+  width: 10em;
+}
+
+.color-summary__text {
+  @include reset.box();
+  @include reset.typo();
+  @include reset.color($fg: theme.$white);
+
+  &--content_name {
+    font-weight: bold;
+  }
+}
+
+.color-tools {
+  @include reset.box();
+  @include reset.deco();
+  display: flex;
+  flex-direction: column;
+  gap: cfg.sz(0);
+
+  @include mq.sm() {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "r h"
+      "g s"
+      "b l";
+  }
+}
+
+.color-tools__item {
+  @include reset.box();
+  @include reset.typo();
+  @include reset.color();
+  display: flex;
+  flex-direction: column;
+
+  &--param {
+    &_r { grid-area: r; }
+    &_g { grid-area: g; }
+    &_b { grid-area: b; }
+    &_h { grid-area: h; }
+    &_s { grid-area: s; }
+    &_l { grid-area: l; }
+  }
+}
+
+.color-tools__control {
+  @include reset.box();
+  width: 100%;
+}

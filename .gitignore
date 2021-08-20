@@ -1,0 +1,7 @@
+.cache/
+dist/
+build/
+elm-stuff/
+node_modules/
+yarn-error.log
+

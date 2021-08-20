@@ -1,0 +1,43 @@
+@use 'cfg';
+@use 'reset';
+@use 'mq';
+@use 'ui';
+
+.theme-preview {
+  @include reset.box();
+  display: flex;
+  flex-direction: column;
+  gap: cfg.sz(1);
+}
+
+.theme-preview__color-grid {
+  @include reset.box($is-ul: true);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-auto-flow: column;
+  gap: 1px;
+}
+
+.theme-preview__color {
+  @include reset.box($padding: cfg.sz(0));
+  @include reset.typo();
+
+  @include mq.xl() {
+    font-size: 100%;
+  }
+
+  &--basic {
+    grid-column: 1 / span 2;
+  }
+}
+
+.theme-preview__tools {
+  @include reset.box();
+  display: flex;
+  justify-content: flex-end;
+}
+
+.theme-preview__button {
+  @include ui.button();
+}

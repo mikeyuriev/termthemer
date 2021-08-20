@@ -1,0 +1,22 @@
+@use 'sass:list';
+
+$base-font-family: monospace;
+$base-font-size: 16px;
+$sz: 1rem;
+$roundness: 1rem * 0.25;
+$content-width: 1200px;
+$xs: 600px;
+$sm: 800px;
+$lg: 1000px;
+$xl: 1200px;
+$time-base: 0.5s;
+$sizes: 0.25rem, 0.5rem, 1rem, 1.5rem, 3rem, 6rem;
+
+@function sz($n) {
+  @return list.nth($sizes, $n + 3);
+}
+
+@mixin rounded($tl: 1, $tr: 1, $br: 1, $bl: 1) {
+  border-radius:
+    ($tl * $roundness) ($tr * $roundness) ($br * $roundness) ($bl * $roundness) ;
+}

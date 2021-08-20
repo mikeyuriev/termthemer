@@ -1,0 +1,47 @@
+@use 'reset';
+@use 'cfg';
+@use 'theme';
+
+@mixin input-behavior() {
+  &:hover {
+    filter: brightness(1.1);
+  }
+  &:focus {
+    outline-color: theme.$white;
+  }
+}
+
+@mixin input($padding: cfg.sz(-1)) {
+  @include reset.box($padding);
+  @include reset.typo();
+  @include reset.deco($border: solid 1px, $outline: solid 1px);
+  @include reset.color($bg: theme.$white, $fg: theme.$black, $border: theme.$white, $outline: theme.$black);
+  @include input-behavior();
+}
+
+@mixin button-behavior() {
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.5);
+  }
+
+  &:focus {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    filter: none;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button() {
+  @include reset.box($padding: cfg.sz(-1) cfg.sz(0));
+  @include reset.typo();
+  @include reset.deco($border: solid 1px, $outline: solid 1px);
+  @include reset.color($bg: theme.$black, $fg: theme.$white, $border: theme.$white, $outline: theme.$black);
+  @include button-behavior();
+}

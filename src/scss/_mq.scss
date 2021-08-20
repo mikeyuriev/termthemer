@@ -1,0 +1,26 @@
+@use 'cfg';
+
+@mixin xs() {
+  @media screen and (min-width: cfg.$xs) {
+    @content;
+  }
+}
+
+@mixin sm() {
+  @media screen and (min-width: cfg.$sm) {
+    @content;
+  }
+}
+
+@mixin lg() {
+  @media screen and (min-width: cfg.$lg) {
+    @content;
+  }
+}
+
+@mixin xl() {
+  @media screen and (min-width: cfg.$xl) {
+    @content;
+  }
+}
+

@@ -1,0 +1,55 @@
+@use 'cfg';
+@use 'reset';
+@use 'mq';
+
+.app {
+  @include reset.box();
+  display: flex;
+  flex-direction: column;
+  gap: cfg.sz(2);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: cfg.sz(1);
+
+  @include mq.xs() {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "select select"
+      "edit preview"
+      "ie ie";
+  }
+
+  @include mq.sm() {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "select select"
+      "edit preview"
+      "ie preview"
+  }
+
+  @include mq.xl() {
+    grid-template-columns: max-content auto max-content;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "select edit preview"
+      "select ie preview";
+    padding: cfg.sz(2);
+  }
+
+  & .color-selector {
+    grid-area: select;
+  }
+
+  & .color-editor {
+    grid-area: edit;
+  }
+
+  & .theme-preview {
+    grid-area: preview;
+  }
+
+  & .import-export {
+    grid-area: ie;
+  }
+}

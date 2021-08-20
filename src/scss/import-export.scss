@@ -1,0 +1,40 @@
+@use 'cfg';
+@use 'reset';
+@use 'mq';
+@use 'ui';
+
+.import-export {
+  @include reset.box();
+  position: relative;
+}
+
+.import-export__content {
+  @include ui.input($padding: cfg.sz(0));
+  width: 100%;
+  height: 100%;
+  resize: none;
+
+  &:focus + .import-export__buttons {
+    opacity: 0.5;
+  }
+}
+
+.import-export__buttons {
+  @include reset.box();
+  position: absolute;
+  top: cfg.sz(0);
+  right: cfg.sz(0);
+  gap: cfg.sz(0);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+
+  @include mq.xs {
+    flex-direction: row;
+  }
+}
+
+.import-export__button {
+  @include ui.button();
+  pointer-events: all;
+}

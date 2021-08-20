@@ -1,0 +1,16 @@
+@use 'cfg';
+@use 'reset';
+@use 'theme';
+
+html {
+  @include reset.box();
+  @include reset.typo($size: cfg.$base-font-size);
+  height: 100%;
+}
+
+body {
+  @include reset.box();
+  min-height: 100%;
+  background-color: theme.$black;
+  color: theme.$white;
+}

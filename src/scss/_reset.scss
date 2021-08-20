@@ -1,0 +1,35 @@
+@use 'cfg';
+@use 'theme';
+
+@mixin box($padding: 0, $margin: 0, $is-ul: false) {
+  box-sizing: border-box;
+  margin: $margin;
+  padding: $padding;
+  @if $is-ul {
+    list-style: none;
+  }
+}
+
+@mixin typo($size: 100%, $weight: normal, $style: normal, $family: cfg.$base-font-family) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  font-style: $style;
+}
+
+@mixin deco($border: none, $outline: none) {
+  border: $border;
+  outline: $outline;
+}
+
+@mixin color($fg: theme.$white, $bg: transparent, $border: null, $outline: null) {
+  color: $fg;
+  background-color: $bg;
+  @if $border {
+    border-color: $border;
+  }
+  @if $outline {
+    outline-color: $outline;
+  }
+}
+
