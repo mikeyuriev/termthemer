@@ -87,17 +87,18 @@
   display: flex;
   flex-direction: column;
 
-  &--param {
-    &_r { grid-area: r; }
-    &_g { grid-area: g; }
-    &_b { grid-area: b; }
-    &_h { grid-area: h; }
-    &_s { grid-area: s; }
-    &_l { grid-area: l; }
+  &--param_ {
+    &r { grid-area: r; }
+    &g { grid-area: g; }
+    &b { grid-area: b; }
+    &h { grid-area: h; }
+    &s { grid-area: s; }
+    &l { grid-area: l; }
   }
 }
 
 .color-tools__control {
-  @include reset.box();
-  width: 100%;
+  @include ui.range($track-background: var(--gradient));
+  //@include reset.box();
+  //width: 100%;
 }

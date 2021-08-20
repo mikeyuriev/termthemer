@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use 'reset';
 @use 'cfg';
 @use 'theme';
@@ -44,4 +45,116 @@
   @include reset.deco($border: solid 1px, $outline: solid 1px);
   @include reset.color($bg: theme.$black, $fg: theme.$white, $border: theme.$white, $outline: theme.$black);
   @include button-behavior();
+}
+
+@mixin range($track-background: theme.$white) {
+  $height: cfg.sz(1);
+  $track-height: ($height * 0.6);
+  $track-border: none;
+  $track-border-radius: 0;
+  $track-shadow: none;
+
+  $thumb-height: $height;
+  $thumb-width: ($height * 0.5);
+  $thumb-background: theme.$white;
+  $thumb-border: 1px solid theme.$black;
+  $thumb-border-radius: 0;
+  $thumb-shadow: none;
+
+  & {
+    height: $height;
+    -webkit-appearance: none;
+    margin: 0;
+    width: 100%;
+    background: transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: $track-height;
+    cursor: pointer;
+    border: $track-border;
+    border-radius: $track-border-radius;
+    background: $track-background;
+    box-shadow: $track-shadow;
+  }
+
+  &:focus::-webkit-slider-runnable-track {
+    outline: 1px solid theme.$white;
+  }
+
+  &::-webkit-slider-thumb {
+    width: $thumb-width;
+    height: $thumb-height;
+    border: $thumb-border;
+    border-radius: $thumb-border-radius;
+    background: $thumb-background;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: (math.div($track-height, 2) - math.div($thumb-height, 2));
+
+  }
+
+  &::-moz-range-track {
+    width: 100%;
+    height: $track-height;
+    cursor: pointer;
+    border: $track-border;
+    border-radius: $track-border-radius;
+    background: $track-background;
+    box-shadow: $track-shadow;
+  }
+
+  &::-moz-range-thumb {
+    width: $thumb-width;
+    height: $thumb-height;
+    border: $thumb-border;
+    border-radius: $thumb-border-radius;
+    background: $thumb-background;
+    cursor: pointer;
+  }
+
+  &::-ms-track {
+    width: 100%;
+    height: $track-height;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: $track-background;
+    border: $track-border;
+    border-radius: $track-border-radius;
+    box-shadow: $track-shadow;
+  }
+
+  &::-ms-fill-upper {
+    background: $track-background;
+    border: $track-border;
+    border-radius: $track-border-radius;
+    box-shadow: $track-shadow;
+  }
+
+  &:focus::-ms-fill-lower {
+//    filter: brightness(1.5);
+  }
+
+  &:focus::-ms-fill-upper {
+//    filter: brightness(1.5);
+  }
+
+  &::-ms-thumb {
+    width: $thumb-width;
+    height: $thumb-height;
+    border: $thumb-border;
+    border-radius: $thumb-border-radius;
+    background: $thumb-background;
+    cursor: pointer;
+  }
 }

@@ -75,23 +75,39 @@ renderSummary name xrName state =
 
 renderTools : State -> Html State
 renderTools { r, g, b, h, s, l } =
+  let
+    grad start end = (RGB255.toHex start) ++ " 0%, " ++ (RGB255.toHex end) ++ " 100%"
+    grad_ start mid end =
+      (RGB255.toHex start) ++ " 0%, "
+      ++ (RGB255.toHex mid) ++ " 50%, "
+      ++ (RGB255.toHex end) ++ " 100%"
+
+    gradR = grad (RGB255.rgb 0.0 g b) (RGB255.rgb 1.0 g b)
+    gradG = grad (RGB255.rgb r 0.0 b) (RGB255.rgb r 1.0 b)
+    gradB = grad (RGB255.rgb r g 0.0) (RGB255.rgb r g 1.0)
+    gradH =
+      "#ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%"
+    gradS = grad (RGB255.hsl h 0.0 l) (RGB255.hsl h 1.0 l)
+    gradL = grad_ (RGB255.hsl h s 0.0) (RGB255.hsl h s 0.5) (RGB255.hsl h s 1.0)
+  in
   H.div
     [ A.class "color-editor__tools"
     , A.class "color-tools"
     ]
-    [ renderControl "r" "red:" r |> H.map (\n -> stateFromRGB n g b )
-    , renderControl "g" "green:" g |> H.map (\n -> stateFromRGB r n b)
-    , renderControl "b" "blue:" b |> H.map (\n -> stateFromRGB r g n)
-    , renderControl "h" "hue:" h |> H.map (\n -> stateFromHSL n s l)
-    , renderControl "s" "saturation:" s |> H.map (\n -> stateFromHSL h n l)
-    , renderControl "l" "lighness:" l |> H.map (\n -> stateFromHSL h s n)
+    [ renderControl "r" "red:" gradR r |> H.map (\n -> stateFromRGB n g b )
+    , renderControl "g" "green:" gradG g |> H.map (\n -> stateFromRGB r n b)
+    , renderControl "b" "blue:" gradB b |> H.map (\n -> stateFromRGB r g n)
+    , renderControl "h" "hue:" gradH h |> H.map (\n -> stateFromHSL n s l)
+    , renderControl "s" "saturation:" gradS s |> H.map (\n -> stateFromHSL h n l)
+    , renderControl "l" "lighness:" gradL l |> H.map (\n -> stateFromHSL h s n)
     ]
 
-renderControl : String -> String -> Float -> Html Float
-renderControl key labelText value =
+renderControl : String -> String -> String -> Float -> Html Float
+renderControl key labelText grad value =
   H.div
     [ A.class "color-tools__item"
     , A.class ("color-tools__item--param_" ++ key)
+    , A.attribute "style" ("--gradient: linear-gradient(to right, " ++ grad ++ ");")
     ]
     [ H.label
       [ A.class "color-tools__label"
@@ -102,6 +118,7 @@ renderControl key labelText value =
     , H.input
       [ A.id ("COLOR-CONTROL-" ++ String.toUpper key)
       , A.class "color-tools__control"
+      , A.class ("color-tools__control--param_" ++ key)
       , A.type_ "range"
       , A.max "1"
       , A.step "any"
