@@ -22,7 +22,6 @@ render theme { content } =
     [ H.textarea
       [ A.class "import-export__content"
       , A.value content
-      , A.rows 19
       , A.spellcheck False
       , E.onInput (\value -> ( State value, Nothing ))
       ]
