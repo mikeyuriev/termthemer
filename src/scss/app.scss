@@ -15,6 +15,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas:
+      "header header"
       "select select"
       "edit preview"
       "ie ie";
@@ -23,6 +24,7 @@
   @include mq.sm() {
     grid-template-columns: 1fr auto;
     grid-template-areas:
+      "header header"
       "select select"
       "edit preview"
       "ie preview"
@@ -32,6 +34,7 @@
     grid-template-columns: max-content auto max-content;
     grid-template-rows: auto 1fr;
     grid-template-areas:
+      "header header header"
       "select edit preview"
       "select ie preview";
     padding: cfg.sz(2);
@@ -52,4 +55,14 @@
   & .import-export {
     grid-area: ie;
   }
+}
+
+.app__header {
+  @include reset.box();
+  grid-area: header;
+}
+
+.app__title {
+  @include reset.box();
+  @include reset.typo($size: 2rem, $weight: normal);
 }

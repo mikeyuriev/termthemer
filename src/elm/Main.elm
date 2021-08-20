@@ -62,7 +62,16 @@ view
   H.div
     [ A.class "app"
     ]
-    [ ColorSelector.render theme currentKey |> H.map OnCurrentKeyChange
+    [ H.header
+      [ A.class "app__header"
+      ]
+      [ H.h1
+        [ A.class "app__title"
+        ]
+        [ H.text "TermThemer"
+        ]
+      ]
+    , ColorSelector.render theme currentKey |> H.map OnCurrentKeyChange
     , ColorEditor.render
         (Theme.nameOf currentKey)
         (Theme.xrNameOf currentKey)
