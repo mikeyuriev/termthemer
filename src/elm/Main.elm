@@ -74,7 +74,7 @@ view
       , H.a
         [ A.class "app__link"
         , A.href "https://github.com/mikeyuriev/termthemer"
-        , A.target "none"
+        , A.target "_blank"
         ]
         [ GithubIcon.render
         ]
