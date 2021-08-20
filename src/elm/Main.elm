@@ -107,8 +107,14 @@ update msg ({ theme, currentKey } as model) =
       { model | theme = Theme.set currentKey color theme }
       |> update SaveState
     OnImport value ->
-      { model | theme = XrParser.parse value }
-      |> update SaveState
+      let
+        theme_ = XrParser.parse value
+      in
+        { model
+        | theme = theme_
+        , colorEditorState = ColorEditor.init (Theme.get currentKey theme_)
+        }
+        |> update SaveState
 
     SaveState ->
       ( model
