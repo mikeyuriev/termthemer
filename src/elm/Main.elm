@@ -13,6 +13,7 @@ import XrParser
 import RGB255 exposing (RGB255)
 import Components.ColorEditor as ColorEditor
 import Components.ColorSelector as ColorSelector
+import Components.GithubIcon as GithubIcon
 import Components.ImportExport as ImportExport
 import Components.ThemePreview as ThemePreview
 
@@ -69,6 +70,13 @@ view
         [ A.class "app__title"
         ]
         [ H.text "TermThemer"
+        ]
+      , H.a
+        [ A.class "app__link"
+        , A.href "https://github.com/mikeyuriev/termthemer"
+        , A.target "none"
+        ]
+        [ GithubIcon.render
         ]
       ]
     , ColorSelector.render theme currentKey |> H.map OnCurrentKeyChange
