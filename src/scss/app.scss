@@ -1,5 +1,6 @@
 @use 'cfg';
 @use 'reset';
+@use 'theme';
 @use 'mq';
 
 .app {
@@ -60,9 +61,28 @@
 .app__header {
   @include reset.box();
   grid-area: header;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.app__header svg {
+  @include reset.box();
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  fill: theme.$white;
+}
+
+.app__link {
+  @include reset.box();
+  display: block;
 }
 
 .app__title {
   @include reset.box();
   @include reset.typo($size: 2rem, $weight: normal);
 }
+
+
+
