@@ -9,8 +9,8 @@ import List.Extra
 import RGB255 exposing (RGB255)
 
 type alias Basic i =
-  { fg : i
-  , bg : i
+  { bg : i
+  , fg : i
   }
 
 type alias Group i =
@@ -31,8 +31,8 @@ type alias Theme i =
   }
 
 type Key
-  = Fg
-  | Bg
+  = Bg
+  | Fg
   | Blk
   | Red
   | Grn
@@ -53,8 +53,8 @@ type Key
 get : Key -> Theme i -> i
 get key { basic, normal, bright } =
   case key of
-    Fg -> basic.fg
     Bg -> basic.bg
+    Fg -> basic.fg
     Blk -> normal.blk
     Red -> normal.red
     Grn -> normal.grn
@@ -78,8 +78,8 @@ set key item theme =
     ( basic, normal, bright ) = ( theme.basic, theme.normal, theme.bright )
   in
     case key of
-      Fg -> { theme | basic = { basic | fg = item } }
       Bg -> { theme | basic = { basic | bg = item } }
+      Fg -> { theme | basic = { basic | fg = item } }
       Blk -> { theme | normal = { normal | blk = item } }
       Red -> { theme | normal = { normal | red = item } }
       Grn -> { theme | normal = { normal | grn = item } }
@@ -100,8 +100,8 @@ set key item theme =
 keyToStr : Key -> String
 keyToStr key =
   case key of
-    Fg -> "fg"
     Bg -> "bg"
+    Fg -> "fg"
     Blk -> "blk"
     Red -> "red"
     Grn -> "grn"
@@ -123,7 +123,7 @@ keys : List Key
 keys = basicKeys ++ normalKeys ++ brightKeys
 
 basicKeys : List Key
-basicKeys = [ Fg, Bg ]
+basicKeys = [ Bg, Fg ]
 
 normalKeys : List Key
 normalKeys = [ Blk, Red, Grn, Ylw, Blu, Mag, Cyn, Wht ]
@@ -132,7 +132,7 @@ brightKeys : List Key
 brightKeys = [ BBlk, BRed, BGrn, BYlw, BBlu, BMag, BCyn, BWht ]
 
 basics : Theme i -> List i
-basics { basic } = [ basic.fg, basic.bg ]
+basics { basic } = [ basic.bg, basic.fg ]
 
 normals : Theme i -> List i
 normals { normal } = groupItems normal
@@ -234,8 +234,8 @@ decoder itemDecoder =
     basicDecoder : Decode.Decoder (Basic i)
     basicDecoder =
       Decode.map2 Basic
-        (Decode.field "fg" itemDecoder)
         (Decode.field "bg" itemDecoder)
+        (Decode.field "fg" itemDecoder)
 
     groupDecoder : Decode.Decoder (Group i)
     groupDecoder =
@@ -258,11 +258,11 @@ encode : Theme i -> (i -> Encode.Value) -> Encode.Value
 encode { basic, normal, bright } encodeItem =
   let
     encodeBasic : Basic i -> Encode.Value
-    encodeBasic { fg, bg } =
+    encodeBasic { bg, fg } =
       Encode.object
-        [ ( "fg", encodeItem fg )
-        , ( "bg", encodeItem bg )
-        ]
+        [ ( "bg", encodeItem bg )
+        , ( "fg", encodeItem fg )
+                ]
     encodeGroup : Group i -> Encode.Value
     encodeGroup { blk, red, grn, ylw, blu, cyn, mag, wht } =
       Encode.object
