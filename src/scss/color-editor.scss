@@ -128,7 +128,8 @@
   flex-direction: column;
   gap: cfg.sz(0);
 
-  @include mq.sm() {
+  /*
+  @include mq.xs() {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
@@ -136,6 +137,7 @@
       "g s"
       "b l";
   }
+  */
 }
 
 .color-tools__item {

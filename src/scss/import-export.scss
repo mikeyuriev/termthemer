@@ -11,12 +11,8 @@
 .import-export__content {
   @include ui.input($padding: cfg.sz(0));
   width: 100%;
-  height: 20em;
+  height: 25em;
   resize: none;
-
-  @include mq.xl() {
-    height: 100%;
-  }
 
   &:focus + .import-export__buttons {
     opacity: 0.5;
