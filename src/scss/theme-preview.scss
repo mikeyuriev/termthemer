@@ -12,24 +12,22 @@
 
 .theme-preview__color-grid {
   @include reset.box($is-ul: true);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(9, 1fr);
-  grid-auto-flow: column;
   gap: 1px;
+
+  &--type_basic {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--type_other {
+    display: grid;
+    grid-template: auto / repeat(2, 1fr);
+  }
 }
 
-.theme-preview__color {
+.theme-preview__color-cell {
   @include reset.box($padding: cfg.sz(0));
   @include reset.typo();
-
-  @include mq.xl() {
-    font-size: 100%;
-  }
-
-  &--basic {
-    grid-column: 1 / span 2;
-  }
 }
 
 .theme-preview__tools {
