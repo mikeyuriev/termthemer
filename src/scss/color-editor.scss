@@ -4,6 +4,64 @@
 @use 'mq';
 @use 'ui';
 
+@mixin range-thumb-a(
+  $width: (cfg.sz(1) * 0.5),
+  $height: (cfg.sz(1)),
+  $color: theme.$white,
+  $track-height: (cfg.sz(1) * 0.6)
+) {
+  $box-sizing: border-box;
+  $border-top: ($height * 0.2) solid $color;
+  $border-right: ($width * 0.5) solid transparent;
+  $border-bottom: ($height * 0.2) solid $color;
+  $border-left: ($width * 0.5) solid transparent;
+  $w: 1px;
+
+  @include ui.range-thumb(
+    $width: 1px,
+    $height: $height,
+    $background: $color,
+    $border: null,
+    $track-height: (cfg.sz(1) * 0.6)
+  );
+  &::-webkit-slider-thumb {
+    box-sizing: $box-sizing;
+    padding-left: $w;
+    background-clip: padding-box;
+    border: {
+      top: $border-top;
+      right: $border-right;
+      bottom: $border-bottom;
+      left: $border-left;
+    }
+  }
+
+  &::-moz-range-thumb {
+    box-sizing: $box-sizing;
+    padding-left: $w;
+    background-clip: padding-box;
+    border: {
+      top: $border-top;
+      right: $border-right;
+      bottom: $border-bottom;
+      left: $border-left;
+    }
+  }
+
+  &::-ms-thumb {
+    box-sizing: $box-sizing;
+    padding-left: $w;
+    background-clip: padding-box;
+    border: {
+      top: $border-top;
+      right: $border-right;
+      bottom: $border-bottom;
+      left: $border-left;
+    }
+  }
+}
+
+
 .color-editor {
   @include reset.box();
   display: flex;
@@ -97,8 +155,34 @@
   }
 }
 
-.color-tools__control {
-  @include ui.range($track-background: var(--gradient));
-  //@include reset.box();
-  //width: 100%;
+.color-tools__control-wrapper {
+  @include reset.box();
+  position: relative;
+  margin: 0 (-(cfg.sz(1) * 0.25));
+
+  &:focus-within::before {
+    outline: 1px dashed theme.$white;
+  }
+
+  &::before {
+    @include reset.box();
+    content: "";
+    position: absolute;
+    z-index: -1;
+    display: block;
+    top: cfg.sz(1) * 0.2;
+    right: 0;
+    bottom: cfg.sz(1) * 0.2;
+    left: 0;
+    margin: 0 (cfg.sz(1) * 0.25);
+    background: var(--gradient);
+  }
 }
+
+.color-tools__control {
+  @include ui.range-base();
+  @include ui.range-track($background: transparent, $focus: false);
+  @include range-thumb-a();
+  display: block;
+}
+
