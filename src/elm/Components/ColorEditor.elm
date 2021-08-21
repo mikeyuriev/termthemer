@@ -115,17 +115,22 @@ renderControl key labelText grad value =
       ]
       [ H.text labelText
       ]
-    , H.input
-      [ A.id ("COLOR-CONTROL-" ++ String.toUpper key)
-      , A.class "color-tools__control"
-      , A.class ("color-tools__control--param_" ++ key)
-      , A.type_ "range"
-      , A.max "1"
-      , A.step "any"
-      , A.value (String.fromFloat value)
-      , E.onInput (String.toFloat >> Maybe.withDefault 0.0)
+    , H.div
+      [ A.class "color-tools__control-wrapper"
+      , A.class ("color-tools__control-wrapper--param_" ++ key)
       ]
-      []
+      [ H.input
+        [ A.id ("COLOR-CONTROL-" ++ String.toUpper key)
+        , A.class "color-tools__control"
+        , A.class ("color-tools__control--param_" ++ key)
+        , A.type_ "range"
+        , A.max "1"
+        , A.step "any"
+        , A.value (String.fromFloat value)
+        , E.onInput (String.toFloat >> Maybe.withDefault 0.0)
+        ]
+        []
+      ]
     ]
 
 rgb255OfState : State -> RGB255
