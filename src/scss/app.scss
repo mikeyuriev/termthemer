@@ -20,25 +20,22 @@
       "select select"
       "edit preview"
       "ie ie";
+    gap: cfg.sz(1);
   }
+
 
   @include mq.sm() {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "header header"
-      "select select"
-      "edit preview"
-      "ie preview"
+    gap: cfg.sz(2);
+    padding: cfg.sz(2);
   }
 
-  @include mq.xl() {
+  @include mq.lg() {
     grid-template-columns: max-content auto max-content;
     grid-template-rows: auto auto 1fr;
     grid-template-areas:
       "header header header"
       "select edit preview"
-      "select ie preview";
-    padding: cfg.sz(2);
+      "select ie ie";
   }
 
   & .color-selector {
