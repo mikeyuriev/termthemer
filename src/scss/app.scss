@@ -31,26 +31,25 @@
 
   @include mq.lg() {
     grid-template-columns: max-content auto max-content;
-    grid-template-rows: auto auto 1fr;
     grid-template-areas:
       "header header header"
       "select edit preview"
       "select ie ie";
   }
 
-  & .color-selector {
+  .color-selector {
     grid-area: select;
   }
 
-  & .color-editor {
+  .color-editor {
     grid-area: edit;
   }
 
-  & .theme-preview {
+  .theme-preview {
     grid-area: preview;
   }
 
-  & .import-export {
+  .import-export {
     grid-area: ie;
   }
 }
@@ -80,6 +79,3 @@
   @include reset.box();
   @include reset.typo($size: 2rem, $weight: normal);
 }
-
-
-

@@ -25,11 +25,7 @@
 @mixin color($fg: theme.$white, $bg: transparent, $border: null, $outline: null) {
   color: $fg;
   background-color: $bg;
-  @if $border {
-    border-color: $border;
-  }
-  @if $outline {
-    outline-color: $outline;
-  }
+  border-color: $border;
+  outline-color: $outline;
 }
 
