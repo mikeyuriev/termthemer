@@ -44,7 +44,7 @@ init state =
       |> Result.withDefault Theme.xRDefaults
   in
   ( { theme = theme
-    , currentKey = Theme.Fg
+    , currentKey = Theme.Bg
     , colorEditorState = ColorEditor.init (Theme.get Theme.Fg theme)
     , themePreviewState = ThemePreview.init
     , importExportState = ImportExport.init
