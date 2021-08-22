@@ -12,7 +12,6 @@
 
 .theme-preview__color-grid {
   @include reset.box($is-ul: true);
-  gap: 1px;
 
   &--type_basic {
     display: flex;
